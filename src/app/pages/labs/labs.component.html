@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>Hola, este es mi primer proyecto!!!</h1>
+<h2>{{welcome}}</h2>
+<ul>
+  <li *ngFor="let task of tasks()">
+      {{task}}
+  </li>
+</ul>
+<hr/>
+<h2>{{'Hola'.repeat(4)}}</h2>
+<p>Hola soy {{name()}} y mi edad es {{age}}</p>
+<button (click)="clickHandler()">Click me</button>
+<button (dblclick)="clickHandler()">DoubleClick</button>
+<ul>
+  <p>total:{{tasks().length}}</p>
+  <li *ngFor="let task of tasks(); index as i">
+    {{i}}  {{task}}
+  </li>
+</ul>
+<h2>Singnals</h2>
+<input type="text" [value]="name()" (change)="changeHandler($event)">
+<p>name:{{name()}}</p>
+
+</div>
+<div *ngIf="name() === 'name'">
+Soy Cindy
+</div>
+<input type="number" [value]= "person().age" (change)="changeAge($event)">
+<div *ngIf="person().name === 'Cindy' && person().age > 18; else miBloque">
+  Soy Cindy y soy mayor de 18
+</div>
+<ng-template #miBloque>
+  Soy Cindy y soy menor de 18
+</ng-template>
+
+<div *ngIf="tasks().length > 1 ; else item">
+<span class="todo-count"><strong>{{tasks().length}}</strong>Items</span>
+</div>
+<ng-template #item>
+  <span class="todo-count"><strong>{{tasks().length}}</strong>Item</span>
+</ng-template>
+
+<input type="text" [value]="name()" (change)="changeName($event)">
+<div [ngSwitch]="person().name">
+  <p *ngSwitchCase="'cindy'">Yo soy cindy</p>
+  <p *ngSwitchCase="'ana'">Yo soy ana</p>
+  <p *ngSwitchCase="'garcia'">Yo soy garcia</p>
+</div>
+<hr>
+<input type="color" [formControl]="colorCrt">
+<p>color:{{colorCrt.value}}</p>
+
+<svg>
+  <g>
+    <rect x="0" y="0" height="100" width= "100" [attr.fill]="colorCrt.value"/>
+  </g>
+</svg>
+<hr>
+<!-- estilos con angular -->
+<input type="number" [formControl]="withCrt">
+<span class="box" [style.width.px]="withCrt.value"></span>
+<hr>
+<!-- clases dinamicas -->
+<p>
+  <input type="text" [formControl]="nameCrt"> <br/>
+  <span class="message-error" [class.show]="nameCrt.invalid && nameCrt.touched">Nombre Invalido</span>
+</p>
+<p>
+  <input type="text">
+</p>
